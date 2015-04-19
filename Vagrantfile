@@ -14,6 +14,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # We forward port 8080, the Web-CAT web port.
   config.vm.network :forwarded_port, guest: 8080, host: 8080
 
+  # Hack: Play games with defualt shell to avoid warning that stdin is not a
+  # TTY.
+  #
+  # See also: https://github.com/mitchellh/vagrant/issues/1673
+  config.ssh.shell = "/bin/bash"
+
   # Use a shell script to "provision" the box. This install Sandstorm using
   # the bundled installer.
   config.vm.provision "shell",
