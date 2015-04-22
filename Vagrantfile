@@ -14,6 +14,18 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # We forward port 8080, the Web-CAT web port.
   config.vm.network :forwarded_port, guest: 8080, host: 8080
 
+  # Adjust /etc/apt/sources.list to use use APT's mirror:// URI scheme to
+  # detect the fastest mirrors. See also
+  # http://askubuntu.com/questions/39922/how-do-you-select-the-fastest-mirror-from-the-command-line
+  config.vm.provision "shell",
+    inline: "cd /etc/apt ; sudo rm sources.list ; printf 'deb mirror://mirrors.ubuntu.com/mirrors.txt trusty main restricted universe multiverse\ndeb mirror://mirrors.ubuntu.com/mirrors.txt trusty-updates main restricted universe multiverse\ndeb mirror://mirrors.ubuntu.com/mirrors.txt trusty-backports main restricted universe multiverse\ndeb mirror://mirrors.ubuntu.com/mirrors.txt trusty-security main restricted universe multiverse\n' | sudo dd of=/etc/apt/sources.list.d/deb-mirrors.list"
+
+  # Hack: Play games with defualt shell to avoid warning that stdin is not a
+  # TTY.
+  #
+  # See also: https://github.com/mitchellh/vagrant/issues/1673
+  config.ssh.shell = "/bin/bash"
+
   # Use a shell script to "provision" the box. This install Sandstorm using
   # the bundled installer.
   config.vm.provision "shell",
