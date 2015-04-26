@@ -28,6 +28,11 @@ sudo mv Web-CAT.war /var/lib/tomcat7/webapps/
 sudo chown tomcat7 /var/lib/tomcat7/webapps/Web-CAT.war
 sudo service tomcat7 start
 
+# Get a storage path ready
+STORAGE_PATH="/var/webcat"
+sudo mkdir $STORAGE_PATH
+sudo chown tomcat7 $STORAGE_PATH
+
 # User needs to manually set up Web-CAT in the browser at this point
 # Go to http://localhost:8080/Web-CAT
 echo "Yay. The first part of the installation is done."
