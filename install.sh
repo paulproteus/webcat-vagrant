@@ -16,12 +16,6 @@ sudo DEBIAN_FRONTEND=noninteractive apt-get install -y tomcat7 mysql-server
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y libxml-parser-perl
 sudo DEBIAN_FRONTEND=noninteractive apt-get install -y build-essential binutils-dev libiberty-dev
 
-# Hack to get rid of lintl errors (modern ubuntu doesn't have or need lintl, let's fake it)
-touch nothing.c
-gcc -c -Wall -Werror -fpic nothing.c
-gcc -shared -o libintl.so nothing.c
-sudo mv libintl.so /usr/lib/x86_64-linux-gnu/libintl.so
-
 # Set up the Web-CAT app
 sudo service tomcat7 stop
 sudo mv Web-CAT.war /var/lib/tomcat7/webapps/

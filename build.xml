@@ -56,7 +56,7 @@
         <property name="cxxtest.symreader.dir"
           value="${cxxtest.dir}${file.separator}bfd"/>
         <property name="cxxtest.extra.libs"
-          value=",bfd,iberty,intl"/>
+          value=",bfd,iberty"/>
     </target>
 
     <!-- Build OS-specific binary files, if necessary -->
