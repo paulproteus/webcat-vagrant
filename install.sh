@@ -30,8 +30,8 @@ sudo chown tomcat7 $STORAGE_PATH
 # User needs to manually set up Web-CAT in the browser at this point
 # Go to http://localhost:8080/Web-CAT
 echo "Yay. The first part of the installation is done."
-echo "Now go to http://localhost:8080/Web-CAT so Web-CAT can start loading."
-echo "It will take a while."
+echo "Now go to http://localhost:8080/Web-CAT to complete the manual setup."
+echo "Web-CAT may take several minutes to load."
 
 # After manual setup, run post_install.sh in /vagrant (so build.xml, assert.c, and 
 # chkptr_table.cpp are present)
